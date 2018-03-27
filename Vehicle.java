@@ -61,7 +61,7 @@ public class Vehicle {
 	
 	protected void setLicensePlate(String newPlate) throws Exception {
 		//Setter
-		if(licensePlate.matches(licenseFormat) && licensePlate.length() == 7) {
+		if(newPlate.matches(licenseFormat) && newPlate.length() == 7) {
 			licensePlate = newPlate;
 		} else {
 			throw new InvalidLicensePlateException();
