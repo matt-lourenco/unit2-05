@@ -36,34 +36,32 @@ public class Vehicle {
 	}
 	
 	protected String licensePlate;
+	private String licenseFormat = "[A-Z0-9]*";
 	protected Colours colour;
-	protected int numberOfDoors;
-	protected int speed;    	// km/h
-	protected int maxSpeed; 	// km/h
+	protected int numberOfDoors = 4;
+	protected int speed = 0;    	// km/h
+	protected int maxSpeed = 200; 	// km/h
 	
 	public Vehicle() throws Exception {
 		//Default Constructor for vehicle class
-		this("AAAA111", Colours.GREY, 4, 200);
+		this("AAAA111", Colours.GREY);
 	}
 	
-	public Vehicle(String licensePlate, Colours colour, int numberOfDoors,
-			       int maxSpeed) throws Exception {
+	public Vehicle(String licensePlate, Colours colour) throws Exception {
 		//Constructor for vehicle class
-		if(licensePlate.matches("[A-Z0-9]")) {
+		if(licensePlate.matches(licenseFormat) && licensePlate.length() == 7) {
 			this.licensePlate = licensePlate;
 		} else {
 			throw new InvalidLicensePlateException();
 		}
 		this.colour = colour;
-		this.numberOfDoors = numberOfDoors;
-		this.maxSpeed = maxSpeed;
 	}
 	
 	protected String getLicensePlate() { return licensePlate; } //Getter
 	
 	protected void setLicensePlate(String newPlate) throws Exception {
 		//Setter
-		if(licensePlate.matches("[A-Z0-9]")) {
+		if(licensePlate.matches(licenseFormat) && licensePlate.length() == 7) {
 			licensePlate = newPlate;
 		} else {
 			throw new InvalidLicensePlateException();
@@ -101,10 +99,10 @@ public class Vehicle {
 	
 	protected String getStatus() {
 		//Returns the fields of the class
-		return "license plate: " + licensePlate + "\n" + 
-				"colour: " + colour + "\n" +
-				"number of doors: " + numberOfDoors + "\n" +
-				"speed: " + speed + "km/h\n" +
-				"maximum speed: " + maxSpeed + "km/h";
+		return "License plate: " + licensePlate + "\n" + 
+				"Colour: " + colour + "\n" +
+				"Number of doors: " + numberOfDoors + "\n" +
+				"Speed: " + speed + "km/h\n" +
+				"Maximum speed: " + maxSpeed + "km/h";
 	}
 }
